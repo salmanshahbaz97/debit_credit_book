@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Expense Form</title>
+	<style>
+		.container {
+			width: 50%;
+			margin: auto;
+			padding: 30px;
+			border: 1px black;
+		}
+		.heading {
+			text-align: center;
+			font-size: 36px;
+			margin-bottom: 20px;
+			color: #514caf;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+		}
+		label {
+			display: block;
+			margin-bottom: 5px;
+			font-weight: bold;
+		}
+		input[type=text], input[type=date], input[type=number] {
+			display: block;
+			margin-bottom: 10px;
+			padding: 5px;
+			width: 100%;
+			border-radius: 3px;
+			border: 1px solid #ccc;
+		}
+		input[type=submit] {
+			background-color: #514caf;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div style="display: flex; align-items: center; justify-content: space-between; background-color: #333; color: #e5e2eb; padding: 20px;">
+		<img src="http://127.0.0.1:8000/media/logo.jpg" alt="SU Builders Logo" style="height: 150px; width: 200px;">
+		<div style="display: flex; align-items: center; justify-content: right;">
+		   <span style="font-size: 100px; font-family: 'Noto Nastaliq Urdu';">تفصیل آمدن</span>
+		</div>
+		<a href="#"></a>
+		<a href="#"></a>
+		<a href="#"></a>
+		<a href="http://127.0.0.1:8000/core/sale/" style="color: #e5e2eb; padding: 20px; height: 50px; width: 150px;">View تفصیل آمدن</a>
+	</div>
+	<div class="container">
+		<h1 class="heading">SU BUILDERS</h1>
+		<form  onsubmit="callAPI(event)"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                >
+			<label for="description">Description:</label>
+			<input type="text" id="description" name="description" required>
+
+			<label for="date">Date:</label>
+			<input type="date" id="date" name="date" required>
+
+			<label for="amount">Amount:</label>
+			<input type="number" id="amount" name="amount" required>
+
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+    <script>
+		function callAPI(event) {
+			event.preventDefault(); // prevent form from submitting normally
+
+			const description = document.getElementById("description").value;
+			const date = document.getElementById("date").value;
+            const amount = document.getElementById("amount").value;
+
+			// make API call
+			fetch('http://127.0.0.1:8000/core/sales/', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ description: description, date: date, amount:amount })
+			})
+			.then(response => response.json())
+			.then(data => {
+                // handle the response data here
+                console.log(data);
+                alert(`Record is created successfully`);
+                event.target.reset(); // reset the form
+            })
+			.catch(error => console.error(error));
+		}
+	</script>
+</body

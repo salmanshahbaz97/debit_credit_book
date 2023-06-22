@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Record Table</title>
+    <style>
+      /* Add some basic styles */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #4CAF50;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display: flex; align-items: center; justify-content: space-between; background-color: #333; color: #e5e2eb; padding: 20px;">
+		<img src="http://127.0.0.1:8000/media/logo.jpg" alt="SU Builders Logo" style="height: 150px; width: 200px;">
+		<div style="display: flex; align-items: center; justify-content: right;">
+		   <span style="font-size: 100px; font-family: 'Noto Nastaliq Urdu';">تفصیل آمدن</span>
+		</div>
+		<a href="#"></a>
+		<a href="#"></a>
+		<a href="#"></a>
+		<a href="http://127.0.0.1:8000/core/sale/" style="color: #e5e2eb; padding: 20px; height: 50px; width: 150px;">View تفصیل آمدن</a>
+	</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for Record in records %}   
+        <tr>
+          <td>{{ Record.description }}</td>
+          <td>{{Record.date}}</td>
+          <td>{{Record.amount}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td><h2>Total</h2></td>
+            <td></td>
+            <td>{{Record.amount}}</td>
+          </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
